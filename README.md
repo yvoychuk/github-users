@@ -7,7 +7,7 @@ List of improvements:
 - show followers, repos, followings in profile;
 - pagination of users list;
 - better styling;
-- refactoring (not-DRY, naming);
+- refactoring (not-DRY, naming, readability);
 - performance improvements;
 - error & progress handling;
 - improve local build process;
