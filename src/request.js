@@ -2,6 +2,22 @@ import { get } from 'axios';
 
 const githubEndpoint = 'https://api.github.com';
 
+export const statusCodes = {
+	100: 'processing',
+	200: 'ok',
+	400: 'error'
+}
+
+export const withStatus = (state, status) => {
+	return {
+		...state,
+		status: {
+			message: statusCodes[status],
+			code: status
+		}
+	}
+}
+
 export const getUsers = (since, perPage) => get(
 	`${githubEndpoint}/users`, 
 	{ 
@@ -12,4 +28,8 @@ export const getUsers = (since, perPage) => get(
 	}
 );
 
-export const getUser = (name) => get(`${githubEndpoint}/users/${name}`);
+export const getProfile = (login) => get(`${githubEndpoint}/users/${login}`);
+
+export const getFollowers = (url) => get(url);
+
+export const getFollowing = (login) => get(`${githubEndpoint}/users/${login}/following`);

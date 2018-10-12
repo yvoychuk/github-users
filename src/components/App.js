@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import UserList from './UserList';
-import User from './User';
+import Users from './Users/Users';
+import Profile from './Profile/Profile';
 
 class App extends Component {
 	render() {
 		return <Router>
 			<div>
-				<Route exact path="/" component={UserList} />
-				<Route path="/:userName" component={User} />
+				<Route exact path="/" component={Users} />
+				<Route path="/profile/:userName" component={({match}) => <Profile userName={match.params.userName} />} />
 			</div>
 		</Router>
 	}
