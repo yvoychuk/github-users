@@ -1,3 +1,7 @@
+import { combineReducers } from 'redux';
+import followingReducer from './following';
+import followersReducer from './followers';
+
 const fetchingProfileReducer = function(state, {status, data}) {
 	return {
 		...state,
@@ -35,4 +39,10 @@ const profileReducer = function(state={}, action) {
     }
 };
 
-export default profileReducer;
+export default combineReducers(
+	{
+		profile: profileReducer,
+		following: followingReducer,
+		followers: followersReducer
+	}
+);

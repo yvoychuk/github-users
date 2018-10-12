@@ -9,7 +9,7 @@ class App extends Component {
 		return <Router>
 			<div>
 				<Route exact path="/" component={Users} />
-				<Route path="/profile/:userName" component={Profile} />
+				<Route path="/profile/:userName" component={({match}) => <Profile userName={match.params.userName} />} />
 			</div>
 		</Router>
 	}

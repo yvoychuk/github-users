@@ -8,6 +8,16 @@ export const statusCodes = {
 	400: 'error'
 }
 
+export const withStatus = (state, status) => {
+	return {
+		...state,
+		status: {
+			message: statusCodes[status],
+			code: status
+		}
+	}
+}
+
 export const getUsers = (since, perPage) => get(
 	`${githubEndpoint}/users`, 
 	{ 
@@ -18,14 +28,8 @@ export const getUsers = (since, perPage) => get(
 	}
 );
 
-export const getProfile = (name) => get(`${githubEndpoint}/users/${name}`);
+export const getProfile = (login) => get(`${githubEndpoint}/users/${login}`);
 
-export const withStatus = (state, status) => {
-	return {
-		...state,
-		status: {
-			message: statusCodes[status],
-			code: status
-		}
-	}
-}
+export const getFollowers = (url) => get(url);
+
+export const getFollowing = (login) => get(`${githubEndpoint}/users/${login}/following`);

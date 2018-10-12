@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import fetchProfile from '../../actions/profile';
 import compose from '../HOC/compose';
-import Details from './Details';
+import Container from './Container';
+import Button from '@material-ui/core/Button';
 
-const mapStateToProps = ({profile}) => {return { profile }}
+const mapStateToProps = ({user}) => {return { user }}
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -15,7 +16,10 @@ const mapDispatchToProps = dispatch => {
 
 const withBackLink = function(profileComponents) {
 	return <div>
-		<Link to="/">back to list</Link>
+		<Link to="/">
+			<Button color="primary" variant="outlined">back to list</Button>
+		</Link>
+		<Link to="/profile/yvoychuk">me</Link>
 		{profileComponents}
 	</div>
 }
@@ -33,14 +37,15 @@ class Profile extends Component {
 	}
 
 	render() {
-		let { profile } = this.props;
+		let { user, userName } = this.props;
+		console.log('rerender', userName)
 		return withBackLink(
 			compose(
-				profile,
-				<Details data={profile && profile.data} />
+				user ? user.profile : {},
+				<Container data={user} />
 			)
 		)
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
