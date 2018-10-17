@@ -18,7 +18,6 @@ class Following extends Component {
 	render() {
 		let { data, classes } = this.props;
 		return <div className={classes.card}>
-			<Link to="/profile/yvoychuk">base</Link>
             <Card>
                 <CardContent>
 					<Typography variant="h4" component="h4">

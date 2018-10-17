@@ -42,4 +42,4 @@ class Users	extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

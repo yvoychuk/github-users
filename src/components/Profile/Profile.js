@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import fetchProfile from '../../actions/profile';
 import compose from '../HOC/compose';
 import Container from './Container';
@@ -19,26 +19,24 @@ const withBackLink = function(profileComponents) {
 		<Link to="/">
 			<Button color="primary" variant="outlined">back to list</Button>
 		</Link>
-		<Link to="/profile/yvoychuk">me</Link>
 		{profileComponents}
 	</div>
 }
 
 class Profile extends Component {
 	componentDidMount() {
-		let {match, fetchProfile} = this.props;
-		let userName;
-		if (typeof match != "undefined") {
-			userName = match.params.userName;
-		};
-		if (typeof userName != "undefined") {
-			fetchProfile(userName)
-		};
+		let {fetchProfile, userName} = this.props;
+		fetchProfile(userName);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.userName !== this.props.userName) {
+			this.props.fetchProfile(this.props.userName)	
+		}
 	}
 
 	render() {
 		let { user, userName } = this.props;
-		console.log('rerender', userName)
 		return withBackLink(
 			compose(
 				user ? user.profile : {},
@@ -46,6 +44,7 @@ class Profile extends Component {
 			)
 		)
 	}
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

@@ -4,7 +4,9 @@ const fetchUsers = (since, perPage) => {
 	return (dispatch) => {
 		dispatch(fetchingUsers());
 		return getUsers(since, perPage)
-			.then((response) => {dispatch(fetchUsersSuccess(response.data))})
+			.then((response) => {
+				dispatch(fetchUsersSuccess(response.data))
+			})
 			.catch((error) => {dispatch(fetchUsersError(error))})
 	} 
 }
