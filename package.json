@@ -6,20 +6,34 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint ./src/**/*.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^5.7.0",
+    "eslint-plugin-jest": "^21.25.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-test-renderer": "^16.5.2",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "regenerator-runtime": "^0.12.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
     "cssnano": "^4.1.4"
   }
 }

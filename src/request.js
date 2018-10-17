@@ -1,6 +1,6 @@
 import { get } from 'axios';
 
-const githubEndpoint = 'https://api.github.com';
+export const githubEndpoint = 'https://api.github.com';
 
 export const statusCodes = {
 	100: 'processing',
