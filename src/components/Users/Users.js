@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchUsers from '../../actions/users';
 import compose from '../HOC/compose';
@@ -26,7 +27,7 @@ class Users	extends Component {
 		this.props.fetchUsers(this.state.since, this.state.perPage)
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate() {
 		if (this.state.shouldFetch) {
 			this.props.fetchUsers(this.state.since, this.state.perPage);
 			this.setState({shouldFetch: false});
@@ -40,6 +41,11 @@ class Users	extends Component {
 			<List items={users && users.items} />
 		)
 	}
+}
+
+Users.propTypes = {
+	fetchUsers: PropTypes.func,
+	users: PropTypes.array
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)

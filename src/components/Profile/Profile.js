@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import fetchProfile from '../../actions/profile';
@@ -36,7 +37,7 @@ class Profile extends Component {
 	}
 
 	render() {
-		let { user, userName } = this.props;
+		let { user } = this.props;
 		return withBackLink(
 			compose(
 				user ? user.profile : {},
@@ -45,6 +46,12 @@ class Profile extends Component {
 		)
 	}
 
+}
+
+Profile.propTypes = {
+	fetchProfile: PropTypes.func,
+	userName: PropTypes.string,
+	user: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
