@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'axios';
-import { githubEndpoint, requestParams } from '../request';
+import { githubEndpoint } from '../request';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -60,13 +60,10 @@ const initializeStorage = (key=STORAGE_KEY_USERS) => {
 // todo
 // const convertArrayToSet = (array) => {}
 
-const usersAuthorizedRequestParams = {
-    ...requestParams,
-    ...{
-        params: {
-            per_page: PER_PAGE,
-            since: SINCE
-        }
+const requestParams = {
+    params: {
+        per_page: PER_PAGE,
+        since: SINCE
     }
 }
 
@@ -85,7 +82,7 @@ class UsersTechnicalComponent extends Component {
     getUsers() {
         get(
             this.state.url, 
-            usersAuthorizedRequestParams
+            requestParams
         ).then(
             (response) => {
                 let url = parseNextUrl(response.headers.link);
