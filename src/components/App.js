@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Users from './Users/Users';
 import Profile from './Profile/Profile';
-import UsersTechnicalComponent from './UsersTechnicalComponent';
+import UsersTechnicalComponent from './UsersTechnicalComponent/UsersTechnicalComponent';
 
 class App extends Component {
 	render() {
