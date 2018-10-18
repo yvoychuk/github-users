@@ -25,15 +25,11 @@ export const parseNextUrl = (input) => {
         `${urlPattern}; rel="next", ${urlPattern}; rel="first"`
     );
     if (! linkPattern.test(input)) return undefined;
-    let inputSplitted = input.split(',');
-    let leftPart = inputSplitted[0];
-    let leftPartSplitted = leftPart.split(';');
-    let urlUnparsed = leftPartSplitted[0];
-    let url = urlUnparsed.substring(1, urlUnparsed.length - 1);
-    return url;
+    let url = input.split(',')[0].split(';')[0];
+    return url.substring(1, url.length - 1);
 }
 
-const pushToStorage = (data, key=STORAGE_KEY_USERS) => {
+export const pushToStorage = (data, key=STORAGE_KEY_USERS) => {
     let currentData = JSON.parse(
         localStorage.getItem(key)
     ) || [];
@@ -43,7 +39,8 @@ const pushToStorage = (data, key=STORAGE_KEY_USERS) => {
             ...currentData,
             ...data
         ])
-    )
+    );
+    return 'ok';
 }
 
 const pullFromStorage = (key=STORAGE_KEY_USERS) => {
@@ -98,7 +95,7 @@ class UsersTechnicalComponent extends Component {
 
     componentDidMount() {
         // initial fetch or set status
-        this.getUsers()
+        // this.getUsers()
     }
 
     componentDidUpdate() {
