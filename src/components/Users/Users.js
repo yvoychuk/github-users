@@ -45,7 +45,7 @@ class Users	extends Component {
 
 Users.propTypes = {
 	fetchUsers: PropTypes.func,
-	users: PropTypes.array
+	users: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)
